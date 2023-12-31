@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "0c64f099-6fcc-4056-9847-aa32cfb70242",
+		"name": "unicornUniCollectionHW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21844041"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"dgvspammer\",\r\n    \"password\": \"MyStrongPassword\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/login",
+				"description": "This is the request for getting JWT token for accessing endpoints. After authentication it is possible to send requests to endpoints regarding the shopping lists and other use cases"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"tosha\",\r\n    \"email\": \"tosha@gmail.com\",\r\n    \"password\": \"MyStrongPassword\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/register",
+				"description": "This is the endpoint for register. We need to provide credentials here."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/shoppingLists/create",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": {
+						"addTokenTo": "header",
+						"algorithm": "HS256",
+						"isSecretBase64Encoded": false,
+						"payload": "{}",
+						"headerPrefix": "Bearer",
+						"queryParamKey": "token",
+						"header": "{}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTkxOGMzODQzZGEyZTkxYjM3NTI2NDEiLCJ1c2VybmFtZSI6InRvc2hhIiwiaWF0IjoxNzA0MDM3NDgxLCJleHAiOjE3MDQwNDEwODF9.iEAAhuuDJEdixynZp3FhFm53qeGkGhSPiNGG_pDVvj4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Fruit salad\",\r\n  \"description\": \"fruit salad\",\r\n  \"items\": [\r\n    {\r\n      \"name\": \"banana\",\r\n      \"details\": \"Yellow\",\r\n      \"quantity\": 5\r\n    },\r\n    {\r\n      \"name\": \"pineapples\",\r\n      \"details\": \"fresh one\",\r\n      \"quantity\": 2\r\n    },\r\n    {\r\n      \"name\": \"Milk FOR TVAR\",\r\n      \"details\": \"fat Milk\",\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/shoppingLists/create",
+				"description": "This is the endpoint for shopping list creation. JWT token should be provided. It is also possible to add a few items while creating the shopping list."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/shoppingLists/65918cc043da2e91b375264a/update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTkxOGMzODQzZGEyZTkxYjM3NTI2NDEiLCJ1c2VybmFtZSI6InRvc2hhIiwiaWF0IjoxNzA0MDM3NDgxLCJleHAiOjE3MDQwNDEwODF9.iEAAhuuDJEdixynZp3FhFm53qeGkGhSPiNGG_pDVvj4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"_id\": \"65918cc043da2e91b375264a\",\r\n        \"name\": \"Fruit salad\",\r\n        \"description\": \"damn salad\",\r\n        \"archived\": false,\r\n        \"owner\": \"65918c3843da2e91b3752641\",\r\n        \"invitedUsers\": [],\r\n        \"items\": [\r\n            \"65918cc043da2e91b3752644\",\r\n            \"65918cc043da2e91b3752646\",\r\n            \"65918cc043da2e91b3752648\"\r\n        ],\r\n        \"__v\": 0\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/shoppingLists/65918cc043da2e91b375264a/update",
+				"description": "Endpoint for updating the appropriate shopping list. JWT token should be provided(Probably will need to be improved)"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/shoppingLists/all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTkxOGMzODQzZGEyZTkxYjM3NTI2NDEiLCJ1c2VybmFtZSI6InRvc2hhIiwiaWF0IjoxNzA0MDM3NDgxLCJleHAiOjE3MDQwNDEwODF9.iEAAhuuDJEdixynZp3FhFm53qeGkGhSPiNGG_pDVvj4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/shoppingLists/all",
+				"description": "This is the endpoint for fetching all shopping list of user, where he is an owner or invited one. JWT token should be provided."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/shoppingLists/65918cc043da2e91b375264a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTkxOGMzODQzZGEyZTkxYjM3NTI2NDEiLCJ1c2VybmFtZSI6InRvc2hhIiwiaWF0IjoxNzA0MDM3NDgxLCJleHAiOjE3MDQwNDEwODF9.iEAAhuuDJEdixynZp3FhFm53qeGkGhSPiNGG_pDVvj4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/shoppingLists/65918cc043da2e91b375264a",
+				"description": "This is the endpoint for fetching details about appropriate shopping list. JWT token should be provided"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/shoppingLists/65918cc043da2e91b375264a/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTkxOGMzODQzZGEyZTkxYjM3NTI2NDEiLCJ1c2VybmFtZSI6InRvc2hhIiwiaWF0IjoxNzA0MDM3NDgxLCJleHAiOjE3MDQwNDEwODF9.iEAAhuuDJEdixynZp3FhFm53qeGkGhSPiNGG_pDVvj4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/shoppingLists/65918cc043da2e91b375264a/delete",
+				"description": "This is the endpoint for deletion of appropriate shopping list"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/shoppingLists/65918e9c43da2e91b3752661/invite",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": {
+						"addTokenTo": "header",
+						"algorithm": "HS256",
+						"isSecretBase64Encoded": false,
+						"payload": "{}",
+						"headerPrefix": "Bearer",
+						"queryParamKey": "token",
+						"header": "{}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTkxOGMzODQzZGEyZTkxYjM3NTI2NDEiLCJ1c2VybmFtZSI6InRvc2hhIiwiaWF0IjoxNzA0MDM3NDgxLCJleHAiOjE3MDQwNDEwODF9.iEAAhuuDJEdixynZp3FhFm53qeGkGhSPiNGG_pDVvj4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"invitedUsersIds\":[\r\n        \"657df45f2350fb1fd236e751\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/shoppingLists/65918e9c43da2e91b3752661/invite"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/shoppingLists/65918e9c43da2e91b3752661/add_items",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": {
+						"addTokenTo": "header",
+						"algorithm": "HS256",
+						"isSecretBase64Encoded": false,
+						"payload": "{}",
+						"headerPrefix": "Bearer",
+						"queryParamKey": "token",
+						"header": "{}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTkxOGMzODQzZGEyZTkxYjM3NTI2NDEiLCJ1c2VybmFtZSI6InRvc2hhIiwiaWF0IjoxNzA0MDM3NDgxLCJleHAiOjE3MDQwNDEwODF9.iEAAhuuDJEdixynZp3FhFm53qeGkGhSPiNGG_pDVvj4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"items\": [\r\n    {\r\n      \"name\": \"ItemApples\",\r\n      \"details\": \"Green ones\",\r\n      \"quantity\": 5\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/shoppingLists/65918e9c43da2e91b3752661/add_items",
+				"description": "This is the endpoint for adding one or more items to the shopping list. JWT should be provided"
+			},
+			"response": []
+		}
+	]
+}

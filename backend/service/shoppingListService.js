@@ -196,15 +196,12 @@ const deleteShoppingList = asyncHandler( async(req, res) => {
     const userId = req.user.userId;
     const shoppingListId = req.params.shoppingListId;
 
-    const updatedUser = await userModel.findByIdAndUpdate(
+    //Delete shopping list id from the list of shoppingLists
+    await userModel.findByIdAndUpdate(
         userId,
         { $pull: { shoppingLists: shoppingListId } },
         { new: true }
     );
-
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
-    }
 
     // Find the shopping list and populate the items
     const shoppingList = await shoppingListModel
@@ -232,8 +229,31 @@ const deleteShoppingList = asyncHandler( async(req, res) => {
  * @type {*|express.RequestHandler<core.ParamsDictionary, any, any, core.Query>}
  */
 const updateShoppingList = asyncHandler( async(req, res) => {
+  try {
+    const userId = req.user.userId;
+    const shoppingListId = req.params.shoppingListId;
+    const updateData = req.body;
 
-});
+    // Check if the user is owner
+    const shoppingList = await shoppingListModel.findOne({ _id: shoppingListId, owner: userId });
+    if (!shoppingList) {
+      return res.status(404).json({ message: 'Shopping list not found or user is not the owner' });
+    }
+
+    // update shopping list
+    const updatedShoppingList = await shoppingListModel.findByIdAndUpdate(
+        shoppingListId,
+        { $set: updateData },
+        { new: true }
+    );
+
+    res.status(200).json({ message: 'Shopping list updated successfully',
+                           shoppingList: updatedShoppingList });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error updating shopping list');
+  }
+})
 
 module.exports = {
   getUserShoppingList,
