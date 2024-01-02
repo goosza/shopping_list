@@ -18,7 +18,7 @@ const ShoppingListList = ({shoppingLists, title, deleteShoppingList}) => {
             <TransitionGroup>
                 {shoppingLists.map((shoppingList, index) =>
                     <CSSTransition
-                        key={shoppingList.id}
+                        key={shoppingList._id}
                         timeout={500}
                         classNames="shoppingList"
                     >

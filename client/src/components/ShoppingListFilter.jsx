@@ -15,8 +15,8 @@ const ShoppingListFilter = ({filter, setFilter}) => {
                       onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
                       defaultValue="Filter by"
                       options={[
-                          {value: 'title', name: 'By name'},
-                          {value: 'body', name: 'By description'}
+                          {value: 'name', name: 'By name'},
+                          {value: 'description', name: 'By description'}
                       ]}
             />
         </div>

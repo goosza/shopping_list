@@ -5,9 +5,9 @@ const ShoppingListItem = (props) => {
     return (
         <div className="shoppingList">
             <div className="shoppingList__content">
-                <strong>{props.number}. {props.shoppingList.title}</strong>
+                <strong>{props.number}. {props.shoppingList.name}</strong>
                 <div>
-                    {props.shoppingList.body}
+                    {props.shoppingList.description}
                 </div>
             </div>
             <div className="shoppingList__btns">

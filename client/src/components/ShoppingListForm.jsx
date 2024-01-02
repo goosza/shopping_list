@@ -5,17 +5,17 @@ import MyButton from "./UI/buttons/MyButton";
 const ShoppingListForm = ({create}) => {
 
     const [shoppingList, setShoppingList] = useState({
-        title: '',
-        body: ''
+        name: '',
+        description: ''
     });
 
     const addNewShoppingList = (e) => {
         e.preventDefault();
         const newShoppingList = {
-            ...shoppingList, id: Date.now()
+            ...shoppingList, _id: Date.now()
         }
         create(newShoppingList);
-        setShoppingList({title: '', body: ''});
+        setShoppingList({name: '', description: ''});
     }
 
     return (
@@ -23,11 +23,11 @@ const ShoppingListForm = ({create}) => {
             <form>
                 <MyInput type="text"
                          placeholder="Shopping list name"
-                         value={shoppingList.title}
-                         onChange={e => setShoppingList({...shoppingList, title: e.target.value})}/>
+                         value={shoppingList.name}
+                         onChange={e => setShoppingList({...shoppingList, name: e.target.value})}/>
                 <MyInput type="text" placeholder="Shopping list description"
-                         value={shoppingList.body}
-                         onChange={e => setShoppingList({...shoppingList, body: e.target.value})}/>
+                         value={shoppingList.description}
+                         onChange={e => setShoppingList({...shoppingList, description: e.target.value})}/>
                 <MyButton onClick={addNewShoppingList}>Create</MyButton>
             </form>
         </div>
